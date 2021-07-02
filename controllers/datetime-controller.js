@@ -11,6 +11,12 @@ function unixToDateObj(req, res, next) {
 
   const dateObj = parseUnix(unixcode);
 
+  if (dateObj.utc === 'Invalid Date') {
+    return res.status(400).json({
+      error: 'Invalid Date',
+    });
+  }
+
   res.status(200).json(dateObj);
 }
 
