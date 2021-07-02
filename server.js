@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // routes
+app.use('/api', require('./routes/datetime-routes'));
 
 // 4 oh 4 handler
 app.use('*', (req, res, next) => {
