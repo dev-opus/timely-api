@@ -1,6 +1,6 @@
-const { parseUnix, parseEmptyDate } = require('../utils/datetime-parser');
+import { parseUnix, parseEmptyDate } from '../utils/datetime-parser.js';
 
-function unixToDateObj(req, res, next) {
+async function unixToDateObj(req, res, next) {
   const { unixcode } = req.params;
 
   if (!unixcode) {
@@ -9,7 +9,7 @@ function unixToDateObj(req, res, next) {
     });
   }
 
-  const dateObj = parseUnix(unixcode);
+  const dateObj = await parseUnix(unixcode);
 
   if (dateObj.utc === 'Invalid Date') {
     return res.status(400).json({
@@ -20,10 +20,10 @@ function unixToDateObj(req, res, next) {
   res.status(200).json(dateObj);
 }
 
-function emptyToDateObj(req, res, next) {
-  const dateObj = parseEmptyDate();
+async function emptyToDateObj(req, res, next) {
+  const dateObj = await parseEmptyDate();
 
   res.status(200).json(dateObj);
 }
 
-module.exports = { unixToDateObj, emptyToDateObj };
+export default { unixToDateObj, emptyToDateObj };

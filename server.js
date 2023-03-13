@@ -1,18 +1,18 @@
-require('dotenv').config();
-const express = require('express');
+import express, { json, urlencoded } from 'express';
+import { router } from './routes/datetime-routes.js';
 
 const app = express();
 const port = process.env.PORT || 8080;
 
-const cors = require('cors');
+import cors from 'cors';
 
 // middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(json());
+app.use(urlencoded({ extended: false }));
 app.use(cors());
 
 // routes
-app.use('/api', require('./routes/datetime-routes'));
+app.use('/api', router);
 
 // 4 oh 4 handler
 app.use('*', (req, res, next) => {

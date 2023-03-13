@@ -1,15 +1,10 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from 'express';
+export const router = Router();
 
-const {
-  unixToDateObj,
-  emptyToDateObj,
-} = require('../controllers/datetime-controller');
+import controller from '../controllers/datetime-controller.js';
 
 // with "/:unixcode" parameter
-router.get('/:unixcode', unixToDateObj);
+router.get('/:unixcode', controller.unixToDateObj);
 
 // without "/:unixcode" parameter
-router.get('/', emptyToDateObj);
-
-module.exports = router;
+router.get('/', controller.emptyToDateObj);
