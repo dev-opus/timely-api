@@ -1,6 +1,6 @@
 FROM node:lts-bullseye-slim
 
-WORKDIR /usr/src/timely
+WORKDIR /app
 
 COPY package.json yarn.lock ./
 

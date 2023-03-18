@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  api:
+    build: ./src
+    ports:
+      - 8080:5000
+    volumes:
+      - timely:/app/logs
+
+volumes:
+  timely:
